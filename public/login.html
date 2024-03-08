@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body class="bg-success">
+    <div class="form-container">
+        <div class="logo-container">
+          Welcome Back!
+        </div>
+  
+        <div class="social-buttons">
+          <button class="social-button facebook" onclick="signG()">
+            <img src="image/google.png" alt=""style="font-size: 10px; width: 25px;">
+                      <span>Sign in with Google</span>
+  
+          </button>
+          <button class="social-button apple"onclick="signT()">
+            <img src="image/twittere-removebg-preview.png" alt="" style="font-size: 10px; width: 25px;">
+            <span>Sign in with Twitter</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <form class="form">
+          <div class="form-group">
+            <div id="erroMsg" style="margin-left: 34%; display: none;">Space can't be empty</div>
+            <label for="email">Email</label>
+            <input required="" placeholder="Enter your email" name="email" id="email" type="text">
+          </div>
+  
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input required="" name="password" placeholder="Enter your password" id="password" type="password">
+          </div>
+  
+          <button type="submit" class="form-submit-btn" id="sign">Sign In</button>
+        </form>
+  
+        <a class="forgot-password-link link" href="#">Forgot Password</a>
+  
+        <p class="signup-link">
+          Don't have an account?
+          <a class="signup-link link" href="signup.html"> Sign up now</a>
+        </p>
+      </div>
+<script src="bootstrap.js"></script>
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, TwitterAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJZ1_-jMb621HOa0z-Ajel1lhUNsucVM8",
+            authDomain: "feb-2024-5b688.firebaseapp.com",
+            projectId: "feb-2024-5b688",
+            storageBucket: "feb-2024-5b688.appspot.com",
+            messagingSenderId: "51061299314",
+            appId: "1:51061299314:web:05d28e828e718eb54ccaeb"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+        const prov = new TwitterAuthProvider();
+
+        const signG = () => {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log(user);
+                    if (user) {
+                        window.location.href = 'dashboard.html'
+                    }
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode);
+                    console.error(errorMessage)
+                })
+        }
+        window.signG = signG
+
+        
+        const signT = () => {
+      signInWithPopup(auth, prov)
+  .then((result) => {
+     const user = result.user
+     console.log(user); 
+     if(user){
+        window.location.href = 'dashboard.html'
+     }
+  }).catch((error) => {
+     console.error(error);
+  });
+    }
+    window.signT = signT
+    </script>
+    
+</body>
+</html>

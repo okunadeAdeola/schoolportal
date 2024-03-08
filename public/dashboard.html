@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<style>
+    table, tr,td {
+        margin-left: 150px;
+        border: 1px solid blue;
+        border-collapse: collapse;
+         margin-top: 50px;
+         padding: 20px;
+         height: 10px;
+         color: blue;
+         width: fit-content;
+    }  
+    #tt{
+        font-weight: bold;
+    }
+    #dash{
+        margin-left: 400px;
+        margin-top: 50px;
+        font-size: 50px;
+        font-weight: bold;
+        color: blue;
+    }
+    ::placeholder{
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    h1{
+        margin-left: 30%;
+    }
+</style>
+<body onload="display()">
+    <h1>Welcome to Dashboard</h1>
+    <table class="stripe table-striped" id="myTable">
+
+    </table>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel" data-bs-dismiss="modal" >Update Changes</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <input type="text" placeholder="FIRST NAME" id="firstName1" class="w-100 text-dark rounded mt-2">
+              <input type="text" placeholder="LAST NAME" id="lastName1" class="w-100 text-dark rounded mt-3">
+              <input type="number" placeholder="PHONE NO:" id="phone1" class="w-100 text-dark rounded mt-3">
+              <input type="text" placeholder="EMAIL" id="email1" class="w-100 text-daek rounded mt-3">
+              <input type="text" placeholder="PASSWORD" id="password1" class="w-100 text-dark rounded mt-3">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button onclick="editItem() "type="button" class="btn btn-primary" data-bs-dismiss="modal">UPDATE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<script src="bootstrap.js"></script>
+    <script>
+        // var gottenStudent = []
+        var gotten = JSON.parse(localStorage.getItem('student'))
+        gottenStudent = gotten
+        console.log(gottenStudent);
+
+
+        function display(){
+
+        myTable.innerHTML = `
+        <tr id=tt>
+            <td>S/N</td>
+            <td>FIRST NAME</td>
+            <td>LAST NAME</td>
+            <td>PHONE</td>
+            <td>EMAIl</td>
+            <td>PASSWORD</td>
+            <td>ACTIONS</td>
+            </tr>
+    `
+        for (let index = 0; index < gottenStudent.length; index++) {
+            console.log(gottenStudent[index]);
+        myTable.innerHTML += `
+        <tr>
+            <td>${index +1}</td>
+            <td>${gottenStudent [index].firstname}</td>
+            <td>${gottenStudent [index].lastname}</td>
+            <td>${gottenStudent [index].phone}</td>
+            <td>${gottenStudent [index].email}</td>
+            <td>${gottenStudent [index].password}</td>
+            
+            <td>
+                <button class="btn btn-danger" onclick="deleteItem(${index})">delete Item</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editItem(${index})">edit Item</button></td>
+            </tr>
+            
+        `        
+        }
+    }
+    // } 
+     function deleteItem (index){
+        // console.log(index);
+        var response = confirm("are you sure you want to continue?")
+            if(response == true){
+                gottenStudent.splice(index, 1)
+                console.log(gottenStudent);
+                display()      
+            } 
+            else("Enter details")
+    } 
+    
+    function editItem(index){
+        var input = firstName1.value
+        var input1 = lastName1.value
+        var input4 = phone1.value
+        var input2 = email1.value
+        var input3 = password1.value
+        var newDetails = {
+            firstname: input,
+            lastname:input1,
+            phone: input4,
+            email: input2,
+            password: input3
+        }
+        gottenStudent.splice(index, 1, newDetails)
+        console.log(gottenStudent);
+        display()
+    }
+    </script>
+</body>
+</html>

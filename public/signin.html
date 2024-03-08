@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <link href="
+  https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.min.css
+  " rel="stylesheet">
+  <link
+        href="
+      https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
+      "
+        rel="stylesheet"
+      />
+</head>
+<body class="bg-dark text-warning">
+    <div class="container mt-lg-5 shadow-sm col-lg-7 col-10">
+        <h2 class="text-center text-decoration-underline">Student portal</h2>
+    <div>
+            <div class="animate__animated animate__flash animate__animated animate__flash animate__delay-2s" id="errorMessage" style="display: none;">
+            <button class=" btn btn-danger text-warning w-100 text-center"><h5>Spaces cannot be empty</h4></button>
+        </div>
+        <div class="animate__animated animate__flash animate__animated animate__flash animate__delay-2s" id="successMessage" style="display: none;">
+            <button class=" btn btn-success text-light w-100 text-center"><h5>Message Successfully Submited</h4></button>
+        </div>
+
+    <label for="" class="form-label">First Name:</label>
+    <input type="text" class="form-control form-control-sm shadow-none w-100" id="firstname">
+    </div>
+
+    <div>
+        <label for="" class="form-label">Last Name:</label>
+        <input type="text" class="form-control form-control-sm shadow-none w-100" id="lastname">
+        </div>
+
+        <div>
+            <label for="" class="form-label">Phone Number:</label>
+            <input type="number" class="form-control form-control-sm shadow-none w-100" id="phonenumber">
+            </div>
+        
+        <div class="my-1">
+            <label for="" class="form-label">Email Address:</label>
+            <input type="email" class="form-control form-control-sm shadow-none w-100" id="emailaddress">
+            </div>
+
+             <div>
+                <label for="" class="form-label">Password:</label>
+                <input type="password" class="form-control form-control-sm shadow-none w-100" id="password">
+                </div>
+
+                <button class="btn btn-warning my-3 w-100 btn-sm" onclick="submit()">SUBMIT</button>
+</div>
+<div id="studentdetails" style="margin-top: 1.5em; margin-left: 1em;" class="w-100"></div>
+<script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+"></script>
+    <script src="bootstrap.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
